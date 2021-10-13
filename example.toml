@@ -1,0 +1,20 @@
+[[tokens]]
+ticker = "Cd"
+address = "9608587debf1136fb90af050d3843dcbc092fde8"
+decimals = 18
+chainId = 100
+signedData = "3045022100b6129185c3f0a182d02bfda8e4c1fb6c22a5b1176889ee5cdf7b7a36443dcaf2022036f83d239d21d20e50c6db70f228452cc8905cceef626001bf280fdf8a6b4b65"
+
+[[tokens]]
+ticker = "Cd"
+address = "9608587debf1136fb90af050d3843dcbc092fde8"
+decimals = 18
+chainId = 100
+signedData = "3045022100b6129185c3f0a182d02bfda8e4c1fb6c22a5b1176889ee5cdf7b7a36443dcaf2022036f83d239d21d20e50c6db70f228452cc8905cceef626001bf280fdf8a6b4b65"
+
+[[tokens]]
+ticker = "Cd"
+address = "9608587debf1136fb90af050d3843dcbc092fde8"
+decimals = 18
+chainId = 100
+signedData = "3045022100b6129185c3f0a182d02bfda8e4c1fb6c22a5b1176889ee5cdf7b7a36443dcaf2022036f83d239d21d20e50c6db70f228452cc8905cceef626001bf280fdf8a6b4b65"

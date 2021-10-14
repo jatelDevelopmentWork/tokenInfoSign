@@ -1,5 +1,5 @@
 [package]
-name = "tokenInfoSign"
+name = "token-info-sign"
 version = "0.1.0"
 authors = ["wanghengtao <wanghengtao@juzix.net>"]
 edition = "2018"

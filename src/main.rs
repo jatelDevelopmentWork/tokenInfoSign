@@ -101,7 +101,7 @@ fn main() {
                 sign(one_token);
             }
 
-            let mut signed_token = Tokens{tokens: Some(all_token_desc)};
+            let signed_token = Tokens{tokens: Some(all_token_desc)};
             str_val = toml::to_string(&signed_token).unwrap();
 
             println!("{:?}", str_val);

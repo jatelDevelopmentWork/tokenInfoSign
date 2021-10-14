@@ -21,8 +21,8 @@ struct TokenDes {
     ticker: Option<String>,
     address: Option<String>,
     decimals : Option<u32>,
-    chainId : Option<u32>,
-    signedData: Option<String>,
+    chain_id : Option<u32>,
+    signed_data: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -37,14 +37,14 @@ fn sign(one_token : & mut TokenDes) {
     hex_string.push_str(&one_token.address.as_ref().unwrap());
     let decimals_bytes: [u8; 4] = unsafe { transmute(one_token.decimals.as_ref().unwrap().to_be()) };
     hex_string.push_str(&hex::encode(decimals_bytes));
-    let chainId_bytes: [u8; 4] = unsafe { transmute(one_token.chainId.as_ref().unwrap().to_be()) };
-    hex_string.push_str(&hex::encode(chainId_bytes));
+    let chain_id_bytes: [u8; 4] = unsafe { transmute(one_token.chain_id.as_ref().unwrap().to_be()) };
+    hex_string.push_str(&hex::encode(chain_id_bytes));
 
-    let se = signRaw(&hex_string);
-    one_token.signedData = Some(hex::encode(se));
+    let se = signed_raw(&hex_string);
+    one_token.signed_data = Some(hex::encode(se));
 }
 
-fn signRaw(raw: &str) -> SerializedSignature {
+fn signed_raw(raw: &str) -> SerializedSignature {
     let seckey = [0x57, 0xf1, 0xea, 0x4a, 0x7b, 0x2a, 0x13, 0xcc, 0x81, 0xa6, 0xe9, 0x10, 0xfd, 0x94, 0x46, 0x56, 0x92, 0x6e, 0xdd, 0x21, 0x93, 0xb6, 0x0f, 0x1d, 0x64, 0x07, 0x72, 0x70, 0x68, 0xcf, 0xe5, 0x95];
     let msg = hex::decode(raw).expect("Decoding failed");
     let secp = Secp256k1::new();
@@ -63,7 +63,7 @@ fn main() {
     let matches = App::new("Token information secp256k1 signature tool")
                           .version("1.0")
                           .author("wanghengtao <wanghengtao@juzix.net>")
-                          .about("ticker || address || number of decimals (uint4be) || chainId (uint4be) signed by the following secp256k1 private key 57f1ea4a7b2a13cc81a6e910fd944656926edd2193b60f1d6407727068cfe595")
+                          .about("ticker || address || number of decimals (uint4be) || chain_id (uint4be) signed by the following secp256k1 private key 57f1ea4a7b2a13cc81a6e910fd944656926edd2193b60f1d6407727068cfe595")
                           .arg(Arg::with_name("config")
                                .short("c")
                                .long("config")
@@ -74,7 +74,7 @@ fn main() {
                                .short("r")
                                .long("rawHex")
                                .value_name("Hexadecimal string")
-                               .help("ticker || address || number of decimals (uint4be) || chainId (uint4be) hexadecimal string")
+                               .help("ticker || address || number of decimals (uint4be) || chain_id (uint4be) hexadecimal string")
                                .takes_value(true))
                           .get_matches();
 
@@ -116,7 +116,7 @@ fn main() {
         None => println!("The string to be signed is not entered"),
         Some(s) => {
             println!("raw hex: {}", s);
-            let result = signRaw(s);
+            let result = signed_raw(s);
             println!("Signed data: {:?}", hex::encode(result));
         }
     }
